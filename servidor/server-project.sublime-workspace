@@ -1,0 +1,412 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"make",
+				"makeGenericCard"
+			],
+			[
+				"pag",
+				"pagination"
+			],
+			[
+				"on",
+				"onLikedPost"
+			],
+			[
+				"load",
+				"loadChurchFeed"
+			],
+			[
+				"feed",
+				"feedType"
+			],
+			[
+				"local",
+				"localStorage"
+			],
+			[
+				"save",
+				"saveDataUser"
+			],
+			[
+				"loa",
+				"loadDataUser"
+			],
+			[
+				"js",
+				"json"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"t",
+				"type"
+			],
+			[
+				"sigla",
+				"siglaEstado"
+			],
+			[
+				"id",
+				"idinstituicao"
+			],
+			[
+				"idese",
+				"idespecialide"
+			],
+			[
+				"tam",
+				"tamArray"
+			],
+			[
+				"p",
+				"p_chave"
+			],
+			[
+				"p_co",
+				"p_coluna1"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"j",
+				"join"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"array_un",
+				"array_unshift"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 58.0,
+		"last_filter": "ss php",
+		"selected_items":
+		[
+			[
+				"ss php",
+				"Set Syntax: PHP"
+			],
+			[
+				"ssht",
+				"Set Syntax: HTML (Tcl)"
+			]
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controller/login.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/directors/navigation.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/loading_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/directors/login.js",
+		"/C/Users/JoaoCarlos/MEGA/IFES/Faculdade/TCC/Calculos/NERI/allProcessed.txt",
+		"/C/Users/JoaoCarlos/Desktop/Inferno.2016.720p/Inferno.2016.720p.KORSUB.HDRip.x264.AAC2.0-STUTTERSHIT.srt",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controller/bottomMenu.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/login.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controller/loading.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/index.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/splash.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/new_church_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/church_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/animations/about_church_jquery.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controller/church.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/directors/church.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/aboutChurch.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/animation3.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/animations/animation3.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/animation2.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/constants/routes_constants.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/feed_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controller/feed.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/directors/feed.js",
+		"/C/Users/JoaoCarlos/Downloads/ducky_code.txt",
+		"/C/Users/JoaoCarlos/Google Drive/Programação/Zueira/pulador IFES 2.0/manifest.json",
+		"/C/Users/JoaoCarlos/Google Drive/Programação/Zueira/pulador IFES 2.0/inject/imgInject.js",
+		"/C/Users/JoaoCarlos/Google Drive/Programação/Zueira/pulador IFES 2.0/background.js",
+		"/C/Users/JoaoCarlos/Google Drive/Dados/554",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/persistence/localStorage.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/variables/feed_variables.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/constants/server_constants.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Arquivos/www/perfil.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/app/main.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/io/servUpdate.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/generic.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/variables/user_variables.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/login_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/directors/mapa.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/event_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controller/event.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/directors/event.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/event.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/bottomMenu_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/variables/churches_varibles.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/map_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/mapa.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controller/mapa.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/menu_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controllers/bottomMenu.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controllers/mapa.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/variables/camera_variables.js",
+		"/C/Users/JoaoCarlos/Projetos/ClickPick/Server/build-1-7-2016/clickPick.db",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/events.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/communications.html",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/model/communication_models.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/controllers/login.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/io/ajax.js",
+		"/C/Users/JoaoCarlos/Projetos/Churches/IOS/Cordova/www/js/utils/md5.js",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/main.php",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/database.sql",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/libs/extra_functions.php",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/libs/bd_manip.php",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/institutions.php",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/user.php",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/notices.php",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/tarefas.txt",
+		"/C/Users/JoaoCarlos/AppData/Local/CatalinaGroup/Citrio/Application/chrome.VisualElementsManifest.xml",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/editais.php",
+		"/C/Users/JoaoCarlos/Projetos/Resimed/Server/src/atividades.php",
+		"/C/Users/transpirer2/Projetos/Agenda/Server/src/libs/regex.php",
+		"/C/Users/transpirer2/Projetos/Agenda/Server/src/libs/functions.php",
+		"/C/Users/transpirer2/Desktop/Libs/AndroidDownloadFileByProgressBar/src/com/example/androidhive/AndroidDownloadFileByProgressBarActivity.java",
+		"/C/Users/transpirer2/Desktop/Libs/.minhas Libs/autom.php",
+		"/C/Users/transpirer2/Projetos/Agenda/Server/src/example htaccess",
+		"/C/Users/transpirer2/Desktop/Libs/.minhas Libs/recebe.php",
+		"/C/Users/transpirer2/Desktop/projeto do jan/receiveMessage.php",
+		"/C/Users/transpirer2/Desktop/projeto do jan/libs/decoder.php",
+		"/C/Users/transpirer2/Desktop/projeto do jan/mysql.php",
+		"/C/Users/transpirer2/Desktop/projeto do jan/libs/bd_manip.php",
+		"/C/Users/transpirer2/Desktop/projeto do jan/teste.php",
+		"/C/Users/transpirer2/Desktop/clickpick/www/index.html",
+		"/C/Users/transpirer2/Desktop/Libs/.minhas Libs/index1.php",
+		"/C/Users/transpirer2/Desktop/clickpick/www/js/functions.js",
+		"/C/Users/transpirer2/Desktop/clickpick/www/js/variable.js",
+		"/C/Users/transpirer2/Desktop/guerrilhamobile-clickpick_aplicativo_frontend-da9617f62c84/editar_dados.html",
+		"/C/Users/transpirer2/Desktop/clickpick/guerrilhamobile-clickpick_aplicativo_frontend-616d2376ca65/cadastro.html",
+		"/C/Users/transpirer2/Desktop/clickpick/www/standby.html",
+		"/C/Users/transpirer2/Desktop/clickpick/guerrilhamobile-clickpick_aplicativo_frontend-616d2376ca65/js/dynamic.style.js",
+		"/C/Users/transpirer2/Desktop/clickpick/guerrilhamobile-clickpick_aplicativo_frontend-616d2376ca65/js/functions.js",
+		"/C/Program Files (x86)/VertrigoServ/www/CAKE/cakephp_2_6_9/app/Config/database.php",
+		"/C/Program Files (x86)/VertrigoServ/www/CAKE/cakephp_2_6_9/app/webroot/index.php",
+		"/C/Program Files (x86)/VertrigoServ/www/CAKE/cakephp_2_6_9/app/Config/bootstrap.php",
+		"/C/Program Files (x86)/VertrigoServ/www/CAKE/cakephp_2_6_9/app/index.php",
+		"/C/Program Files (x86)/VertrigoServ/www/CAKE/cakephp_2_6_9/app/webroot/css/cake.generic.css",
+		"/C/Program Files (x86)/VertrigoServ/www/CAKE/cakephp_2_6_9/lib/Cake/bootstrap.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/libs/config.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/View/Posts/index.ctp",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/Controller/PostsController.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/Model/Post.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/Config/database.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/Config/database.php.default",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/README.md",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/lib/Cake/Config/config.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/lib/Cake/Network/CakeSocket.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/Config/core.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/Config/routes.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/Config/Schema/db_acl.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/app/Config/acl.ini.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp_2_6_9/index2.php",
+		"/C/Users/transpirer2/Desktop/Servers/USBWebserver v8.6/root/CAKE/cakephp-3.0.9/README.md"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"TROLLADOR",
+			"%image%",
+			"image",
+			"\"",
+			"loadGeneric",
+			"saveGeneric",
+			"{",
+			"nome",
+			"no aquivo /models/communications_models.js",
+			"\"\",\n",
+			"_funcToCall",
+			"dinamicUpdate",
+			"ordem",
+			"programa_instituicao",
+			"p_modificador",
+			"endereco",
+			"pass",
+			"email",
+			">\n",
+			"    ",
+			">\n",
+			"var",
+			"    ",
+			"Rapid Development Framework ",
+			"CakePHP: the rapid development php framework",
+			"title",
+			"root",
+			"usbw",
+			"user"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"\\t"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 27.0
+	},
+	"pinned_build_system": "",
+	"project": "server-project.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 197.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

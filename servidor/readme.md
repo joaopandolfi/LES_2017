@@ -1,7 +1,8 @@
 Documentação de rotas:
 
-# === Modelagem de comunicação REST Cliente servidor ===
+## === Modelagem de comunicação REST Cliente servidor ===
 
+'''
 /*Login Route*/
 [ip]/user/login/{user}/{pass}
 {user} => Em Base64
@@ -66,9 +67,11 @@ Documentação de rotas:
 		]
 	}
 }
+'''
 
-// ===== INTERACTIONS WITH TRIP
+##  ===== INTERACTIONS WITH TRIP
 
+'''
 /* Like Trip */
 [ip]/trip/like/{id_trip}/{id_user}/{like_or_unlike}/
 {id_trip} => Int por enquanto
@@ -93,9 +96,11 @@ Documentação de rotas:
 {id_user} => Int por enquanto
 {rate} => double
 
+'''
 
-// ===== USER ROUTES
+## ===== USER ROUTES
 
+'''
 /*My trips*/
 [ip]/user/trips/my/{user_id}/
 {user_id} => Int por enquanto
@@ -184,3 +189,4 @@ $data = {
  data:{}
 }
 
+'''

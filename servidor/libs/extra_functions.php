@@ -8,11 +8,11 @@
 	/*
 	* Gera a API_KEY do usuario
 	* @receives email
-	* @returns api_key -> MD5
+	* @receives id
+	* @returns api_key -> base64
 	*/
-	function generateAPIKey($email){
-		$today = getdate();
-		return md5($today[0].$email.(SEED*$today["yday"]));
+	function generateAPIKey($email,$id){
+		return base64_encode("-".$email." -||-".$id."-");
 	}
 
 	/*

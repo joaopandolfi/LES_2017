@@ -31,7 +31,7 @@ class Trip extends Controller{
 	}
 
 
-
+	//TODO: VERIFICAR A VIEW NO BANCO, ALTERAÇÕES NA ROTA
 	function _getTrip($req){
 		$res = "";
 		$bd = new bd_manip();

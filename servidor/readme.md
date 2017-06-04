@@ -140,7 +140,7 @@ Não terá rota :D
 [ip]/trip/follow/{id_trip}/{id_user}/{hash}/{follow}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
-{hash} => String 																																		
+{hash} => String								
 {folllow} => 1 or 0
 
 /* New Comment */

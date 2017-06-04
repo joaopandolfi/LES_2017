@@ -2,7 +2,7 @@ Documentação de rotas:
 
 ## === Modelagem de comunicação REST Cliente servidor ===
 
-'''
+```
 /*Login Route*/
 [ip]/user/login/{user}/{pass}
 {user} => Em Base64
@@ -24,15 +24,17 @@ Documentação de rotas:
 @returns
 {success: 1 or 0,
  error: {String},
- data:{
+ data:{			// esse campo data é redundante, n serve pra nada, da pra tirar ele e por o trips direto
 	trips:[
 			{
-			url_picture: {String},
+			url_user_picture: {String},
 			title:{String},
 			name_user:{String},
-			short_route: {String},
+			/*tag: {String},*/
+			short_route: {String}, /*Abreveação da rota*/
 			rate: {int},
-			id_trip: {int}
+			id_trip: {int},
+			create_time: {String} /* SQL Format */
 			}
 		]
 	}
@@ -40,17 +42,20 @@ Documentação de rotas:
 
 
 /*Show Trip*/
+[ip]/trip/show/{id}   // vc esqueceu de por, coloquei assim, qualquer coisa muda e me avisa
 @returns
 {success: 1 or 0,
  error: {String},
  data:{
 	url_picture: {String},
 	title:{String},
-	name_user:{String},
+	/*name_user:{String},*/
 	short_route: {String},
 	rate: {int},
+	/*likes: {int},*/
 	id_trip: {int},
-	comments: {String},
+	description: {String},
+	tags: [{String},{String}],
 	pictures: [
 			{
 			label: {String},
@@ -61,47 +66,142 @@ Documentação de rotas:
 			{
 			id_place: {Int},	
 			name_place:{String},
-			location:{lat:{double}, lng:{double}},
-			price: {Double}
+			url_picture: {String},
+			likes: {int}
+			/*location:{lat:{double}, lng:{double}},*/
+			/*price: {Double}*/
 			}
 		]
-	}
+	},
+	comments: [
+		{
+		url_user_picture: {String},
+		name_user: {int},
+		comment:{String},
+		date_time:{String} /* SQL FORMAT */
+		}
+	]
 }
-'''
+```
 
-##  ===== INTERACTIONS WITH TRIP
+## ====> PLACE INTERACTIONS
 
-'''
+```
+/*Show Place*/
+[ip]/place/show/{id_place}
+@returns
+{success: 1 or 0,
+ error: {String},
+ data:{	
+	id_place: {Int},	
+	name_place:{String},
+	url_picture: {String},
+	likes: {int},
+	location:{lat:{double}, lng:{double}},
+	description:{String},
+	address: {String},
+	site: {String},
+	tel: {String}
+}
+
+/*Search Place*/
+[ip]/place/search/{query_string}
+{query_string} => Em Base64
+@returns
+{success: 1 or 0,
+ error: {String},
+ data:{	
+	places:[
+			{
+			id_place: {Int},	
+			name_place:{String},
+			url_picture: {String}
+			}
+	]
+}
+
+
+/*New place*/
+Não terá rota :D
+
+```
+
+## ===== INTERACTIONS WITH TRIP
+
+```
 /* Like Trip */
-[ip]/trip/like/{id_trip}/{id_user}/{like_or_unlike}/
+[ip]/trip/like/{id_trip}/{id_user}/{hash}/{like_or_unlike}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
+{hash} => String 
 {like_or_unlike} => 1 or 0
 
 /* I will to this fucking crazy Trip */
-[ip]/trip/follow/{id_trip}/{id_user}/{follow}/
+[ip]/trip/follow/{id_trip}/{id_user}/{hash}/{follow}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
+{hash} => String 																																		
 {folllow} => 1 or 0
 
+/* New Comment */
+[ip]/trip/comment/{id_trip}/{id_user}/{hash}/
+{id_trip} => Int por enquanto
+{id_user} => Int por enquanto
+{hash} => String 
+{comment} => String
+
+==> Disabled
 /* When i have money i will go {i don't have money} */
 [ip]/trip/idhm/{id_trip}/{id_user}/{iwill}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
 {iwill} => 1 or 0
 
+==> Disabled
 /* Rate Trip */
 [ip]/trip/rate/{id_trip}/{id_user}/{rate}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
 {rate} => double
-
-'''
+```
 
 ## ===== USER ROUTES
 
-'''
-/*My trips*/
+```
+/*Register Route*/
+[ip]/user/register/
+@send by post
+$data = {
+	name: {String},
+	email: {String},
+	pass: {String},
+}
+{name} => Em Base64
+{email} => Em Base64
+
+@returns
+{success: 1 or 0,
+ error: {String},
+ data:{
+	id_user: {int}
+	}
+}
+
+/*Set user Image*/
+[ip]/user/new/image/{user_id}/{hash}/
+@send by post
+$data = {
+	url_image: {String}
+}
+
+@returns
+{success: 1 or 0,
+ error: {String},
+ data:{}
+}
+
+
+/*My trips*/ ==> IGUAL O FEED // WHERE DIFERENTE
 [ip]/user/trips/my/{user_id}/
 {user_id} => Int por enquanto
 @returns
@@ -130,7 +230,8 @@ Documentação de rotas:
 $data = {
 	title: {String},
 	short_route: {String},
-	comments: {String}	
+	description: {String}	,
+	tags:{String} (<item>;<item>)
 }
 
 @returns
@@ -151,6 +252,7 @@ $data = {
 $files
 {Padão de upload de arquivos}
 $labels = [{label:{String}}]
+$_FILES["photos"] <== POST contendo as imagens
 {Array padrão com os labels ordenados em relação as imagens}
 
 @returns
@@ -188,5 +290,4 @@ $data = {
  error: {String},
  data:{}
 }
-
-'''
+```

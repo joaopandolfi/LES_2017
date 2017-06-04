@@ -27,23 +27,58 @@ class Trip extends Controller{
 		$bd->setTable("short_route");
 		$bd->setOrder("id_trip");
 
-		return $this->_makeLambdaConsult($bd,function(){$bd->consultAll()});
+		return $this->_makeLambdaConsult($bd,function(){
+			return $bd->consultAll();
+		});
 	}
 
-
-	//TODO: VERIFICAR A VIEW NO BANCO, ALTERAÇÕES NA ROTA
+	/*
+	* Recupera trip completa no banco de dados
+	* @receive $req {$_REQUEST} => (id_trip)
+	* @returns $res {Function Response}
+	*/
 	function _getTrip($req){
 		$res = "";
 		$bd = new bd_manip();
 		
+		$_idTripKey = "id_trip = '".$bd->removeSuspectsFromString($req["id_trip"])."'";
+
 		$bd->setTable("short_route");
 		$bd->setOrder("id_trip");
-		$bd->setKey();
+		$bd->setKey($_idTripKey);
 		
 		try {
 			$bd->connectDB();
-			$result = $bd->consultAll();
+			$result = $bd->consultAllByType();
+			
+			//Pictures
+			$bd->setTable("trip_images");
+			$bd->setOrder("id_trip");
+			$bd->setKey($_idTripKey);
+			$pictures = $bd->consultAllByType();
+			
+			//Route
+			$bd->setTable("trip_places");
+			$bd->setOrder("id_trip");
+			$bd->setKey($_idTripKey);
+			$route = $bd->consultAllByType();
+			
+
+			//Comments
+			$bd->setTable("trip_evaluations");
+			$bd->setOrder("id_trip");
+			$bd->setKey($_idTripKey);
+			$comments = $bd->consultAllByType();
+			
+
 			$bd->closeConnection();
+
+
+			//Montando
+			$result = $result[0];
+			$result["tags"] = array($result["tag"]);
+			$result["pictures"] = $pictures;
+			$result["comments"] = $comments;
 
 			$response = array("success" => 1,
 					"error" => 0,
@@ -52,8 +87,6 @@ class Trip extends Controller{
 
 			$res = json_encode($response);
 	
-		
-
 
 		} catch (Exception $e) {
 			$res = "{'success':0,'error':'$e',data:{}}";

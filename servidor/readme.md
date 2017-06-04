@@ -3,7 +3,7 @@ Documentação de rotas:
 ## === Modelagem de comunicação REST Cliente servidor ===
 
 ```
-/*Login Route*/
+/*Login Route*/ -> OK
 [ip]/user/login/{user}/{pass}
 {user} => Em Base64
 {pass} => Md5
@@ -19,12 +19,12 @@ Documentação de rotas:
 	}
 }
 
-/*Show all Trips*/
+/*Show all Trips*/ -> OK
 [ip]/trip/all
 @returns
 {success: 1 or 0,
  error: {String},
- data:{			// esse campo data é redundante, n serve pra nada, da pra tirar ele e por o trips direto
+ data:{
 	trips:[
 			{
 			url_user_picture: {String},
@@ -41,13 +41,13 @@ Documentação de rotas:
 }
 
 
-/*Show Trip*/
-[ip]/trip/show/{id}   // vc esqueceu de por, coloquei assim, qualquer coisa muda e me avisa
+/*Show Trip*/ -> OK
+[ip]/trip/show/{id}
 @returns
 {success: 1 or 0,
  error: {String},
  data:{
-	url_picture: {String},
+	url_user_picture: {String},
 	title:{String},
 	/*name_user:{String},*/
 	short_route: {String},
@@ -87,7 +87,7 @@ Documentação de rotas:
 ## ====> PLACE INTERACTIONS
 
 ```
-/*Show Place*/
+/*Show Place*/ -> OK
 [ip]/place/show/{id_place}
 @returns
 {success: 1 or 0,
@@ -136,7 +136,7 @@ Não terá rota :D
 {hash} => String 
 {like_or_unlike} => 1 or 0
 
-/* I will to this fucking crazy Trip */
+/* I will to this fucking crazy Trip, Follow button */
 [ip]/trip/follow/{id_trip}/{id_user}/{hash}/{follow}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
@@ -149,15 +149,19 @@ Não terá rota :D
 {id_user} => Int por enquanto
 {hash} => String 
 {comment} => String
+```
 
-==> Disabled
+#==> Disabled
+```
 /* When i have money i will go {i don't have money} */
 [ip]/trip/idhm/{id_trip}/{id_user}/{iwill}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
 {iwill} => 1 or 0
+```
 
-==> Disabled
+#==> Disabled
+```
 /* Rate Trip */
 [ip]/trip/rate/{id_trip}/{id_user}/{rate}/
 {id_trip} => Int por enquanto

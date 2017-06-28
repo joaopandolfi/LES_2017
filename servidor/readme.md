@@ -104,7 +104,7 @@ Documentação de rotas:
 	tel: {String}
 }
 
-/*Search Place*/
+/*Search Place*/ => OK
 [ip]/place/search/{query_string}
 {query_string} => Em Base64
 @returns

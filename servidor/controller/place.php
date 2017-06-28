@@ -18,17 +18,43 @@ class Place extends Controller{
 	* @receive $req {$_REQUEST} => (id_place)
 	* @returns $res {Function Response}
 	*/
-	function _showPlace($req){
+	public function showPlace($req){
+
+		$query = "id_place = '{id_place}'";
+		$itens = array("{id_place}" => $req["id_place"]);
+
+		return _getPlace($query,$itens);
+	}
+
+
+	/* Exibe Local pelo Nome
+	* @receive $req {$_REQUEST} => (query)
+	* @returns $res {Function Response}
+	*/
+	public function searchPlace($req){
+		
+		$query = " name LIKE '{query}%' OR name LIKE '%{query}' OR name LIKE '%{query}%' ";
+		$itens = array("{query}" => base64_decode($req["query"]));
+
+		return _getPlace($query,$itens);
+	}
+
+
+	/*
+	* Acessa o banco de dados e recupera o Place (local)
+	* @receive $where {where clause} => with key to replace
+	* @receive $wherekey {Key to replace in where clause}
+	* @returns $res {Function Response}
+	*/
+	protected function _getPlace($where,$itemMap){
 		$res = "";
 		$bd = new bd_manip();
-		
-		$id_place = $bd->removeSuspectsFromString($req["id_place"]);
 
 		$bd->setTable("show_place");
 		$bd->setOrder("id_place");
-		$bd->setKey("id_place = '".$id_place."'");
+		$bd->setFormatedKey($where,$itemMap);
 		
-		return $this->_makeLambdaConsult($bd,function(){
+		return $this->_makeLambdaConsult($bd,function($bd){
 			$result = $bd->consultAllByType();
 
 			//Formatting

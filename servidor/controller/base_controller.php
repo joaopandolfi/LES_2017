@@ -11,7 +11,7 @@ class Controller{
 	proteceted function _makeLambdaConsult($bd,$lambda){
 		try {
 			$bd->connectDB();
-			$result = $lambda();
+			$result = $lambda($bd);
 			$bd->closeConnection();
 
 			$response = array("success" => 1,

@@ -1,0 +1,39 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  ### Teleconsultoria - Cliente ###
+
+  #REST
+  RewriteRule ^rest/tc/login/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/?$ /rest_login.php?t=1&email=$1&pass=$2 [NC,L]
+  RewriteRule ^rest/tc/pacient/new/?$ /rest/insert_pacients.php [NC,L]
+  RewriteRule ^rest/tc/consult/new/?$ /rest/anamnese.php?intention=new [NC,L]
+  RewriteRule ^rest/tc/consult/response/?$ /rest/anamnese.php?intention=response [NC,L]
+
+  #NAVIGATION
+  RewriteRule ^telconsult/login/([a-z0-9A-Z@._-]+)/?$ /login.php?esp=$1 [NC,L]
+  RewriteRule ^telconsult/search/pacient/?$ /main.php?section=search [NC]
+  RewriteRule ^telconsult/new/pacient/?$ /main.php?section=newPacient [NC]
+  RewriteRule ^telconsult/new/([a-z0-9A-Z@._-]+)/?$ /main.php?section=newConsult&idclient=$1 [NC]
+  RewriteRule ^telconsult/all/?$ /main.php?section=show [NC]
+  RewriteRule ^telconsult/open/?$ /main.php?section=open [NC]
+  RewriteRule ^telconsult/closed/?$ /main.php?section=closed [NC]
+  RewriteRule ^telconsult/response/view/([a-z0-9A-Z@._-]+)/?$ /main.php?section=view_response&idconsult=$1 [NC]
+  RewriteRule ^telconsult/view/([a-z0-9A-Z@._-]+)/?$ /main.php?section=view&idconsult=$1 [NC]
+  RewriteRule ^telconsult/home/([a-z0-9A-Z@._-]+)/?$ /main.php?section=main&esp=$1 [NC]
+
+  #Logoff  
+  RewriteRule ^logoff/?$ /logoff.php [NC]
+
+  #RESPONSE
+  RewriteRule ^telconsult/respond/([a-z0-9A-Z@._-]+)/?$ /main.php?section=response&idconsult=$1 [NC]
+
+
+#  RewriteRule ^profile/findAllAvailableApp/?$ /profile.php?t=0 [NC]
+#  RewriteRule ^profile/findAllRegisteredApp/?$ /profile.php?t=5 [NC]
+#  RewriteRule ^profile/findAllNotRegisteredApp/?$ /profile.php?t=6 [NC]
+
+  #Denomation - Denominacoes
+#  RewriteRule ^denomation/findAll/?$ /denomation.php?t=0
+
+
+</IfModule>

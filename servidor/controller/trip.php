@@ -27,7 +27,7 @@ class Trip extends Controller{
 		$bd->setTable("short_route");
 		$bd->setOrder("id_trip");
 
-		return $this->_makeLambdaConsult($bd,function(){
+		return $this->_makeLambdaConsult($bd,function($bd){
 			return $bd->consultAll();
 		});
 	}

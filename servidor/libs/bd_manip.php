@@ -185,6 +185,21 @@ class bd_manip{
 		$this->colunas = $p_colunas;
 	}
 
+	function setFormatedKey($p_query, $p_itens){		
+		$lenMap = count($p_itens);
+		$keys = array_keys($p_itens);
+		$_where = $p_query;
+
+		for($i = 0; $i < $lenMap; $i++){
+			$key = $keys[$i];
+			$item = $p_itens[$key];
+			$query = $this->removeSuspectsFromString($item);
+			$_where = str_replace($key, $query, $_where);
+		}
+
+		$this->chave = $_where;
+	}
+
 	function setArrayKey($p_operador,$p_chave,$p_arrayDados){
 		$tamArray = count($p_arrayDados);
 		$this->chave .=" (";
@@ -217,15 +232,15 @@ class bd_manip{
 	}
 	
 	function removeSuspectsFromString($string){
-		$string = str_replace("'", "\'", $string);
-		$string = str_replace('"', '\"', $string);
-		return $string;
-
-		/*
-		$strSChar = "áàãâäéèêëíìîïóòõôöúùûüçÁÀÃÂÄÉÈÊËÍÌÎÏÓÒÕÖÔÚÙÛÜÇ";
-		$regex = "/([^0-9a-zA-Z*@.:,?!+$() ".$strSChar."]*)/i";//ficam somente os listados aqui
-		return preg_replace($regex,"",$string);
-		*/
+		return strtr($str, array(
+        	"\0" => "",
+        	"'"  => "&#39;",
+        	"\"" => "&#34;",
+        	"\\" => "&#92;",
+        	// more secure
+        	"<"  => "&lt;",
+        	">"  => "&gt;",
+    	));
 	}
 }
 ?>

@@ -18,9 +18,7 @@
 
 	//Basic
 	include_once(SRC."libs/bd_manip.php");
-	include_once(SRC."libs/regex.php");
-	include_once(SRC."libs/extra_functions.php");
-
+	
 	//Controller
 	include_once(SRC."controller/base_controller.php");
 	include_once(SRC."controller/user.php");

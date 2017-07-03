@@ -226,12 +226,13 @@ class Trip extends Controller{
 			return "{'success':0,'error':'Invalid POST parameters',data:{}}";
 		}
 
-		$sql = "SELECT new_trip('{id_user}','{title}','{short_route}','{description}');";
+		$sql = "SELECT new_trip('{id_user}','{title}','{short_route}','{description}','{url_image}');";
 
 		$data  = array('{id_user}' => $req["id_user"],
 				'{title}' => $req["title"],
 				'{short_route}' => $req["short_route"],
-				'{description}' => $req["description"]);
+				'{description}' => $req["description"],
+				'{url_image}' 	=> $req["url_image"]);
 
 		$bd->setFormatedSql($sql,$data);
 

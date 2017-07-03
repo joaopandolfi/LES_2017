@@ -211,7 +211,13 @@ class Trip extends Controller{
 		$bd->setFormatedKey($query,$data);
 
 		return $this->_makeLambdaConsult($bd,function($bd){
-			return $bd->consultAllByType();
+			$result = $bd->consultAllByType();
+			$res[] = array();
+			foreach ($result as $r){
+				$r["tags"] = explode(";", $r["tags"]);	
+				$res[] = $r;
+			}
+			return $res;
 		});
 	}
 
@@ -272,27 +278,29 @@ class Trip extends Controller{
 	/* Adciona imagem a trip
 	* @receives id_user
 	* @receives id_trip
-	* @receives urls
-	* @receives labels
+	* @receives url
+	* @receives label
 	*/
 	function putImages($req){
 		$bd = new bd_manip();
 		$bd->setTable("route_pics");
 
-		$photos = $req["urls"];
-		$labels = $req["labels"]; 
+		$photos = $req["url"];
+		$labels = $req["label"]; 
 		$len_images = count($urls)-1;
 
 		$bd->connectDB();
-		while ($len_images >= 0) {
+		//while ($len_images >= 0) {
 			$data = array('fk_route',$req["id_trip"],
-					'photo' => $photos[$len_images],
-					'label' => $labels[$len_images]);
+					'photo' => $photos,
+					'label' => $labels);
+					//'photo' => $photos[$len_images],
+					//'label' => $labels[$len_images]);
 
 			$bd->setSafeData($data);
 			$bd->forceInsert();
-			$len_images -=1;
-		}
+		//	$len_images -=1;
+		//}
 
 		$bd->closeConnection();
 

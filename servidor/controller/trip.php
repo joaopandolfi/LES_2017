@@ -65,7 +65,12 @@ class Trip extends Controller{
 		$bd->setOrder("id_trip");
 
 		return $this->_makeLambdaConsult($bd,function($bd){
-			return $bd->consultAll();
+			$result = $bd->consultAll();
+			foreach ($result as $r){
+				$r["tags"] = explode(";", $r["tags"]);	
+				$res[] = $r;
+			}
+			return $res;
 		});
 	}
 
@@ -95,14 +100,12 @@ class Trip extends Controller{
 			$pictures = $bd->consultAllByType();
 			
 			//Route
-			/*
+			
 			$bd->setTable("trip_places");
 			$bd->setOrder("id_trip");
 			$bd->setKey($_idTripKey);
 			$route = $bd->consultAllByType();
-			*/
-
-			$route = explode(";", $result["r.resumed_tags"]);
+			
 
 			//Comments
 			$bd->setTable("trip_evaluations");
@@ -116,7 +119,7 @@ class Trip extends Controller{
 
 			//Montando
 			$result = $result[0];
-			$result["tags"] = array($result["tag"]);
+			$result["tags"] = explode(";", $result["tags"]);
 			$result["pictures"] = $pictures;
 			$result["route"] 	= $route;
 			$result["comments"] = $comments;

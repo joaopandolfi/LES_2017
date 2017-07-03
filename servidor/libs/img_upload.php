@@ -1,47 +1,20 @@
 <?php
-############ Configuration ##############
-$config["generate_image_file"]			= true;
-$config["generate_thumbnails"]			= true;
-$config["image_max_size"] 				= 1000; //Maximum image size (height and width)
-$config["thumbnail_size"]  				= 1000; //Thumbnails will be cropped to 200x200 pixels
-$config["thumbnail_prefix"]				= "thumb_"; //Normal thumb Prefix
-$config["destination_folder"]			= SRC.'assets/imgs/'; //upload directory ends with / (slash)
-$config["thumbnail_destination_folder"]	= SRC.'assets/imgs/'; //upload directory ends with / (slash)
-$config["upload_url"] 					= "http://restfull.hol.es/les/assets/imgs/"; 
-$config["quality"] 						= 100; //jpeg quality
-$config["random_file_name"]				= true; //randomize each file name
 
+$folder = '/home/u284261513/public_html/les/assets/imgs/';
+$url = "http://restfull.hol.es/les/assets/imgs/";
+$post_data = array();
+//parse_str(file_get_contents('php://input'),$post_data);
 
-if(!isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
-	exit;  //try detect AJAX request, simply exist if no Ajax
-}
+//$base = $post_data["data"];
 
+$base = file_get_contents('php://input');
+$binary = base64_decode($base);
 
-//specify uploaded file variable
-$config["file_data"] = $_FILES["photos"]; 
+header('Content-Type: bitmap; charset=utf-8');
+$im_name = uniqid().".jpg";
+$file = fopen($folder.$im_name, 'wb');
+fwrite($file, $binary);
+fclose($file);
+echo '{"success":1, "data":"'.$url.$im_name.'"}';
 
-
-//include sanwebe impage resize class
-include(SRC."libs/resize.class.php"); 
-
-
-//create class instance 
-$im = new ImageResize($config); 
-
-
-try{
-	$responses = $im->resize(); //initiate image resize
-	
-	$imgIds = "";
-	foreach($responses["images"] as $response){
-		$imgsIds .= $response.";";
-	}
-	
-	echo '{"success":1, "data":"'.$imgsIds.'"}';
-	
-}catch(Exception $e){
-	echo '{"success":0,"error":"';
-	echo $e->getMessage();
-	echo '"}';
-}	
 ?>

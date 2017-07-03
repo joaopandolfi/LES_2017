@@ -86,6 +86,7 @@ CREATE TABLE IF NOT EXISTS `route` (
   `portrayde_date` DATETIME NULL,
   `rate` FLOAT NULL,
   `main_picture` VARCHAR(255) NULL,
+  `resumed_tags` TEXT NULL,
   `title` VARCHAR(255) NULL,
   PRIMARY KEY (`id_route`),
   INDEX `fk_user_idx` (`fk_user` ASC),
@@ -208,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `trip__place` (
 -- -----------------------------------------------------
 -- Placeholder table for view `short_trip`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `short_trip` (`id_trip` INT, `rate` INT, `title` INT, `short_route` INT, `create_time` INT, `name_user` INT, `url_user_picture` INT);
+CREATE TABLE IF NOT EXISTS `short_trip` (`id_trip` INT, `id_user` INT, `rate` INT, `title` INT, `resumed_tags` INT,`short_route` INT, `create_time` INT, `name_user` INT, `url_user_picture` INT);
 
 -- -----------------------------------------------------
 -- Placeholder table for view `full_trip`
@@ -241,16 +242,17 @@ CREATE TABLE IF NOT EXISTS `show_place` (`id_place` INT, `name_place` INT, `url_
 DROP TABLE IF EXISTS `short_trip`;
 CREATE  OR REPLACE VIEW `short_trip` AS
 select  
-	r.id_route as id_trip,
+  r.id_route as id_trip,
+    r.fk_user as id_user,
     r.rate as rate,
     r.title as title,
     r.description as short_route,
     r.create_date as create_time,
-	u.name as name_user, 
+    r.resumed_tags as tags,
+  u.name as name_user, 
     u.photo as url_user_picture
 FROM  route AS r 
 INNER JOIN user as u ON u.id_user = r.fk_user;
-
 -- -----------------------------------------------------
 -- View `full_trip`
 -- -----------------------------------------------------

@@ -20,7 +20,7 @@ class Trip extends Controller{
 	* @receive $req {$_REQUEST}
 	* @returns $res {Funcion Response}
 	*/
-	function _getAllTrips($req){
+	function getAllTrips($req){
 		$res = "";
 		$bd = new bd_manip();
 		
@@ -37,7 +37,7 @@ class Trip extends Controller{
 	* @receive $req {$_REQUEST} => (id_trip)
 	* @returns $res {Function Response}
 	*/
-	function _getTrip($req){
+	function getTrip($req){
 		$res = "";
 		$bd = new bd_manip();
 		
@@ -108,7 +108,7 @@ class Trip extends Controller{
 	}
 
 	/* Usuario marca que vai na viagem
-	*
+	* => DESATIVADO
 	*/
 	function _iWill($req){
 		$res = "";
@@ -145,32 +145,104 @@ class Trip extends Controller{
 	}
 
 	/* Cria uma trip
-	*
+	* @receives id_user 	{Id so usuario}
+	* @receives title 		{Titulo da trip}
+	* @receives short_route	{Rota minimizada}
+	* @receives description {Descricao}
+	* @returns {base_return}
 	*/
-	function _newTrip($req){
-		$res = "";
-		/*..code*/
-		return $res;
+	function newTrip($req){
+		$bd = new bd_manip();
+
+		$sql = "SELECT new_trip('{id_user}','{title}','{short_route}','{description}');";
+
+		$data  = array('{id_user}' => $req["id_user"],
+				'{title}' => $req["title"],
+				'{short_route}' => $req["short_route"],
+				'{description}' => $req["description"]);
+
+		$bd->setFormatedSql($sql,$data);
+
+		$bd->connectDB();
+
+		$id_trip = $bd->consultAllWithSql();
+		$id_trip = array_pop($id_trip[0]);
+		$bd->flushSql();
+
+		$tags = explode(";", $req["tags"]);
+		$len_tags = count($tags)-1;
+
+		while($len_tags >=0 ){
+			$sql = "INSERT INTO route__tag (id_route,id_tag) VALUES ('{id_route}','{id_tag}')"
+			$data = array('{id_route}' => $id_trip, '{id_tag}' => $tags[$len_tags]);
+			$bd->setFormatedSql($sql,$data);
+			$id_trip = $bd->consultAllWithSql();
+			$bd->flushSql();
+			$len_tags -= 1;
+		}
+
+		$bd->closeConnection();
+	
+		return $this->_makeBaseResponse(array('id_trip' => $id_trip));
 	}
 
 
 	/* Adciona imagem a trip
-	*
+	* @receives id_user
+	* @receives id_trip
+	* @receives urls
+	* @receives labels
 	*/
-	function _putImage($req){
-		$res = "";
-		/*..code*/
-		return $res;
+	function putImages($req){
+		$bd = new bd_manip();
+		$bd->setTable("route_pics");
+
+		$photos = $req["urls"];
+		$labels = $req["labels"]; 
+		$len_images = count($urls)-1;
+
+		$bd->connectDB();
+		while ($len_images >= 0) {
+			$data = array('fk_route',$req["id_trip"],
+					'photo' => $photos[$len_images],
+					'label' => $labels[$len_images]);
+
+			$bd->setSafeData($data);
+			$bd->forceInsert();
+			$len_images -=1;
+		}
+
+		$bd->closeConnection();
+
+		return $this->_makeBaseResponse(array());
 	}
 
 
 	/* Adiciona as rotas na trip
-	*
+	* @receives places 	{Lista dos lugares (IDs)}
+	* @receives id_trip {ID da rota}
+	* @returns {base_return}
 	*/
-	function _putRoutes($req){
-		$res = "";
-		/*..code*/
-		return $res;
+	function putRoutes($req){
+		$bd = new bd_manip();
+		$bd->setTable("trip__place");
+
+		$places = $req["places"];
+		$len_places = count($places)-1;
+
+		$bd->connectDB();
+		while ($len_places >= 0) {
+			$data = array('fk_route',$req["id_trip"],
+					'fk_place' => $places[$len_places]);
+
+			$bd->setSafeData($data);
+			$bd->forceInsert();
+			$len_places -=1;
+		}
+
+		$bd->closeConnection();
+
+		return $this->_makeBaseResponse(array());
 	}
 
 }

@@ -1,5 +1,7 @@
 <?php 
 
+define("SEED",10354532);
+date_default_timezone_set("America/Sao_Paulo");
 
 class Controller{
 
@@ -8,7 +10,7 @@ class Controller{
 	* @receive $lambda	{Lambda function to call}
 	* @return $res 		{Resultado da busca formatada}
 	*/
-	proteceted function _makeLambdaConsult($bd,$lambda){
+	protected function _makeLambdaConsult($bd,$lambda){
 		try {
 			$bd->connectDB();
 			$result = $lambda($bd);
@@ -27,6 +29,17 @@ class Controller{
 		return $res;
 	}
 
+
+	/* Formata resposta base 
+	* @receive $result {Array}
+	* @returs $response {JsonString}
+	*/
+	protected function _makeBaseResponse($result){
+		$response = array("success" => 1,
+				"error" => 0,
+				"data" => $result);
+		return json_encode($response);
+	}
 }
 
 ?>

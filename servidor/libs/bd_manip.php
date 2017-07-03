@@ -151,7 +151,7 @@ class bd_manip{
 
 //Setters
 
-	function setDados($p_dados){
+	function setData($p_dados){
 		$this->dados = array();
 		$this->campos = array();
 		$this->dados = array_values($p_dados);	
@@ -185,19 +185,26 @@ class bd_manip{
 		$this->colunas = $p_colunas;
 	}
 
-	function setFormatedKey($p_query, $p_itens){		
+	private function formatSql($p_query, $p_itens){
 		$lenMap = count($p_itens);
 		$keys = array_keys($p_itens);
-		$_where = $p_query;
+		$_query = $p_query;
 
 		for($i = 0; $i < $lenMap; $i++){
 			$key = $keys[$i];
 			$item = $p_itens[$key];
 			$query = $this->removeSuspectsFromString($item);
-			$_where = str_replace($key, $query, $_where);
+			$_query = str_replace($key, $query, $_query);
 		}
+		return $_query;		
+	}
 
-		$this->chave = $_where;
+	function setFormatedKey($p_query, $p_itens){		
+		$this->chave = $this->formatSql($p_query,$p_itens);
+	}
+
+	function setFormatedSql($p_query, $p_itens){
+		$this->sql = $this->formatSql($p_query,$p_itens);	
 	}
 
 	function setArrayKey($p_operador,$p_chave,$p_arrayDados){

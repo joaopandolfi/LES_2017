@@ -172,7 +172,7 @@ Não terá rota :D
 ## ===== USER ROUTES
 
 ```
-/*Register Route*/
+/*Register Route*/ => OK
 [ip]/user/register/
 @send by post
 $data = {
@@ -191,7 +191,7 @@ $data = {
 	}
 }
 
-/*Set user Image*/
+/*Set user Image*/ => OK
 [ip]/user/new/image/{user_id}/{hash}/
 @send by post
 $data = {
@@ -230,7 +230,7 @@ $data = {
 ## ===== CREATING TRIP
 ```
 
-/*New Trip*/
+/*New Trip*/ => OK
 [ip]/user/trips/new/{user_id}/{hash}/
 {user_id} => Int por enquanto
 {hash} => String {Hash né tio}
@@ -251,7 +251,7 @@ $data = {
 	}
 }
 
-/*Add Images on Trip*/
+/*Add Images on Trip*/ => OK
 [ip]/trip/images/upload/{trip_id}/{user_id}/{hash}/
 {trip_id} => Int por enquanto (Id da trip)
 {user_id} => Int por enquanto (Id do usuário que está enviando as imagens)
@@ -277,7 +277,7 @@ $_FILES["photos"] <== POST contendo as imagens
 	}
 }
 
-/*Add Routes on Trip*/
+/*Add Routes on Trip*/ => OK
 [ip]/trip/routes/add/{trip_id}/{user_id}/{hash}/
 {trip_id} => Int por enquanto (Id da trip)
 {user_id} => Int por enquanto (Id do usuário que está enviando as imagens)

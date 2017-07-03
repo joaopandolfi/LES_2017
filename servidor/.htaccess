@@ -22,4 +22,6 @@
   RewriteRule ^place/show/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=p&r_code=p_get&id_place=$1 [NC,L]
   RewriteRule ^place/search/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=p&r_code=p_search&query=$1 [NC,L]
 
+  #IMAGE
+  RewriteRule ^img/upload/?$ /les/libs/img_upload.php [NC,L]
 </IfModule>

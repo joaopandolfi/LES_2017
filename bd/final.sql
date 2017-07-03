@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `route` (
   `id_route` INT NOT NULL AUTO_INCREMENT,
   `fk_user` INT NULL,
   `description` VARCHAR(255) NULL,
-  `create_date` DATETIME NULL,
+  `create_date` DATETIME CURRENT_TIMESTAMP,
   `portrayde_date` DATETIME NULL,
   `rate` FLOAT NULL,
   `main_picture` VARCHAR(255) NULL,
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `route_evaluation` (
   `star` INT NULL,
   `spend` DECIMAL NULL,
   `fk_user` INT NULL,
-  `date_time` DATETIME NULL,
+  `date_time` DATETIME CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_route_evaluation`))
 ;
 
@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `trip__place` (
 -- -----------------------------------------------------
 -- Placeholder table for view `short_trip`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `short_trip` (`id_trip` INT, `id_user` INT, `rate` INT, `title` INT, `resumed_tags` INT,`short_route` INT, `create_time` INT, `name_user` INT, `url_user_picture` INT);
+CREATE TABLE IF NOT EXISTS `short_trip` (`id_trip` INT, `id_user` INT,`main_picture` INT, `rate` INT, `title` INT, `resumed_tags` INT,`short_route` INT, `create_time` INT, `name_user` INT, `url_user_picture` INT);
 
 -- -----------------------------------------------------
 -- Placeholder table for view `full_trip`
@@ -249,7 +249,8 @@ select
     r.description as short_route,
     r.create_date as create_time,
     r.resumed_tags as tags,
-  u.name as name_user, 
+    r.main_picture as main_picture,
+    u.name as name_user, 
     u.photo as url_user_picture
 FROM  route AS r 
 INNER JOIN user as u ON u.id_user = r.fk_user;

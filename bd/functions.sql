@@ -33,14 +33,16 @@ DELIMITER //
 CREATE FUNCTION new_trip(user_id_p INT, 
 				title_p VARCHAR(45), 
 				short_route_p VARCHAR(45), 
-				description_p VARCHAR(45))  
+				description_p VARCHAR(45),
+        url_image_p TEXT) 
 RETURNS INT
   BEGIN
 
-  INSERT INTO route (fk_user,description,title) VALUES(
+  INSERT INTO route (fk_user,description,title,main_picture) VALUES(
     user_id_p,
     description_p,
-    title_p
+    title_p,
+    url_image_p
   );
   
   SELECT LAST_INSERT_ID() INTO @id_route;

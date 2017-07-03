@@ -13,7 +13,23 @@
 	*/
 
 class Place extends Controller{
-	
+
+	public function delegateRoute($code, $codes,$req){
+		switch ($code) {
+			case $codes["get_place"]:
+				return $this->showPlace($req);
+			break;
+		
+			case $codes["search_place"]:
+				return $this->searchPlace($req);
+			break;
+			
+			default:
+				return self::PATTERN_ERROR;
+			break;
+		}
+	}
+
 	/* Exibe Local pelo ID
 	* @receive $req {$_REQUEST} => (id_place)
 	* @returns $res {Function Response}
@@ -23,7 +39,7 @@ class Place extends Controller{
 		$query = "id_place = '{id_place}'";
 		$itens = array("{id_place}" => $req["id_place"]);
 
-		return _getPlace($query,$itens);
+		return $this->_getPlace($query,$itens);
 	}
 
 
@@ -33,10 +49,11 @@ class Place extends Controller{
 	*/
 	public function searchPlace($req){
 		
-		$query = " name LIKE '{query}%' OR name LIKE '%{query}' OR name LIKE '%{query}%' ";
-		$itens = array("{query}" => base64_decode($req["query"]));
+		$query = " name_place LIKE '{query}%' OR name_place LIKE '%{query}' OR name_place LIKE '%{query}%' ";
+		//$itens = array("{query}" => base64_decode($req["query"]));
+		$itens = array("{query}" => $req["query"]);
 
-		return _getPlace($query,$itens);
+		return $this->_getPlace($query,$itens);
 	}
 
 
@@ -64,5 +81,5 @@ class Place extends Controller{
 			return $result;
 		});
 	}
-
+}
 ?>

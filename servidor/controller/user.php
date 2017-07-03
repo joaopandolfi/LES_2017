@@ -16,7 +16,19 @@
 class User extends Controller{
 
 	const USER_TABLE = "user";
-	const USER_ID = "iduser";
+	const USER_ID = "id_user";
+
+	public function delegateRoute($code, $codes,$req){
+		switch ($code) {
+			case $codes["login"]:
+				return $this->login($req);
+			break;
+
+			default:
+				return self::PATTERN_ERROR;
+			break;
+		}
+	}
 
 	/* Faz login
 	* @receive $req {$_REQUEST}
@@ -27,10 +39,11 @@ class User extends Controller{
 		$bd = new bd_manip();
 
 		$email = $bd->removeSuspectsFromString(base64_decode($req["email"]));
+		//$email = $bd->removeSuspectsFromString($req["email"]);
 		$pass = $bd->removeSuspectsFromString($req["pass"]);
 
 		$bd->setTable(self::USER_TABLE);
-		$bd->setOrder(self::USER_ID)
+		$bd->setOrder(self::USER_ID);
 		$bd->setKey(" email ='$email' AND password = '$pass' ");
 		
 		$bd->connectDB();
@@ -41,9 +54,9 @@ class User extends Controller{
 			$response = array("success" => 1,
 				"error" => 0,
 				"data" => array(
-					"user_id" 	=> $result["iduser"],
+					"user_id" 	=> $result["id_user"],
 					"hash" 		=> generateAPIKey($result["email"], $result["iduser"]),
-					"name" 		=> $result["nickname"],
+					"name" 		=> $result["name"],
 					"email" 	=> $result["email"],
 					"url_picture" => $result["photo"]
 					) 
@@ -51,7 +64,7 @@ class User extends Controller{
 			$res = json_encode($response);
 		}
 		else
-			$res = "{'success':0,'error':1,data:{}}";
+			$res = self::PATTERN_ERROR;
 
 		return $res;
 	}
@@ -98,7 +111,7 @@ class User extends Controller{
 		
 		$sql_where = " id_user = '{id_user}' AND hash = {hash} ";
 		$data_where = array('{id_user}' => $req["id_user"], 
-					'{hash}' = > $req["hash"]);
+					'{hash}' => $req["hash"]);
 
 		$bd->setTable(self::USER_TABLE);
 		$bd->setData($data);
@@ -108,7 +121,7 @@ class User extends Controller{
 		$bd->update();
 		$bd->closeConnection();
 
-		return $this->_makeBaseResponse(array())
+		return $this->_makeBaseResponse(array());
 	}
 
 

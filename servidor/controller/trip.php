@@ -13,6 +13,24 @@
 	*/
 
 class Trip extends Controller{
+
+	public function delegateRoute($code, $codes,$req){
+			switch ($code) {
+				case $codes["all_trips"]:
+					return $this->getAllTrips($req);
+				break;
+			
+				case $codes["get_trip"]:
+					return $this->getTrip($req);
+				break;
+				
+				default:
+					//return self::PATTERN_ERROR;
+				break;
+			}
+		}
+
+
 	/* ===================================== GET FUNCTIONS ====================================*/
 
 	/* Recupera todas as trips
@@ -24,7 +42,7 @@ class Trip extends Controller{
 		$res = "";
 		$bd = new bd_manip();
 		
-		$bd->setTable("short_route");
+		$bd->setTable("short_trip");
 		$bd->setOrder("id_trip");
 
 		return $this->_makeLambdaConsult($bd,function($bd){
@@ -43,7 +61,7 @@ class Trip extends Controller{
 		
 		$_idTripKey = "id_trip = '".$bd->removeSuspectsFromString($req["id_trip"])."'";
 
-		$bd->setTable("short_route");
+		$bd->setTable("short_trip");
 		$bd->setOrder("id_trip");
 		$bd->setKey($_idTripKey);
 		
@@ -78,6 +96,7 @@ class Trip extends Controller{
 			$result = $result[0];
 			$result["tags"] = array($result["tag"]);
 			$result["pictures"] = $pictures;
+			$result["route"] 	= $route;
 			$result["comments"] = $comments;
 
 			$response = array("success" => 1,
@@ -173,7 +192,7 @@ class Trip extends Controller{
 		$len_tags = count($tags)-1;
 
 		while($len_tags >=0 ){
-			$sql = "INSERT INTO route__tag (id_route,id_tag) VALUES ('{id_route}','{id_tag}')"
+			$sql = "INSERT INTO route__tag (id_route,id_tag) VALUES ('{id_route}','{id_tag}')";
 			$data = array('{id_route}' => $id_trip, '{id_tag}' => $tags[$len_tags]);
 			$bd->setFormatedSql($sql,$data);
 			$id_trip = $bd->consultAllWithSql();

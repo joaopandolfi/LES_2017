@@ -14,6 +14,9 @@
 
 class Route extends Controller{
 
+	public function delegateRoute($code, $codes,$req){
+		return self::PATTERN_ERROR;		
+	}
 
 	/* Cria nova Rota
 	*
@@ -34,3 +37,4 @@ class Route extends Controller{
 	}
 
 }
+?>

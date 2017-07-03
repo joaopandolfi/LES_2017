@@ -11,40 +11,53 @@
 		Personalized libs useds:
 			Using bd_manip for control database
 	*/
+	define("SRC","/home/u284261513/public_html/les/");
 
 	//Constants
-	include_once("constants/routes_constants.php");
+	include_once(SRC."constants/routes_constants.php");
 
 	//Basic
-	include_once("libs/bd_manip.php");
-	include_once("libs/regex.php");
-	include_once("libs/extra_functions.php");
+	include_once(SRC."libs/bd_manip.php");
+	include_once(SRC."libs/regex.php");
+	include_once(SRC."libs/extra_functions.php");
 
 	//Controller
-	include_once("controller/base_controller.php");
-	include_once("controller/user.php");
-	include_once("controller/trip.php");
-	include_once("controller/route.php");
+	include_once(SRC."controller/base_controller.php");
+	include_once(SRC."controller/user.php");
+	include_once(SRC."controller/trip.php");
+	include_once(SRC."controller/route.php");
+	include_once(SRC."controller/place.php");
+	include_once(SRC."controller/error.php");
 
 	//Getting Route code
 	$code = $_REQUEST["r_code"];
+	$type = $_REQUEST["r_type"];
 
+	$controller = "null";
+	
 	//Working
-	switch ($code) {
-		case $route_codes["login"]:
-			$user = new User();
-			echo $user._login($_REQUEST);
+	switch ($type) {
+		case $route_types["user"]:
+				$controller = new User();			
 			break;
 		
-		case $route_codes["all_trips"]:
-			$trip = new Trip();
-			echo $trip._getAllTrips($_REQUEST);
+		case $route_types["trip"]:
+				$controller = new Trip();
 			break;
 		
-
+		case $route_types["route"]:
+				$controller = new Route();
+			break;
+		
+		case $route_types["place"]:
+				$controller = new Place();
+			break;
+		
 		default:
-			# code...
+				$controller = new Error();
 			break;
 	}
+
+	echo $controller->delegateRoute($code,$route_codes,$_REQUEST);
 
 ?>

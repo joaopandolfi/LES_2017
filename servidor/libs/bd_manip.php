@@ -42,7 +42,7 @@ class bd_manip{
 	}
 
 	function connectDB(){
-		$this->con = mysqli_connect("127.0.0.1","user","pass","table") or print (mysqli_connect_error());
+		$this->con = mysqli_connect("mysql.hostinger.com.br","u284261513_les","les123456","u284261513_les") or print (mysqli_connect_error());
 		mysqli_set_charset($this->con,"utf8");
 	}
 
@@ -69,6 +69,7 @@ class bd_manip{
 		$result = array();
 		$sql = "SELECT ".(empty($this->colunas)?"*":$this->colunas) ." FROM ".$this->tabela." WHERE ".$this->chave." order by ".$this->ordem;
 		$query = mysqli_query($this->con,$sql);
+		echo $sql."<BR>";
 		while($sql = mysqli_fetch_array($query, MYSQLI_ASSOC)){
 			$result[$cont] = $sql;
 			$cont++;
@@ -89,6 +90,7 @@ class bd_manip{
 		$cont = 0;
 		$result = array();
 		$sql = $this->sql;
+		echo $sql."<BR>";
 		$query = mysqli_query($this->con,$sql);
 		while($sql = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 			$result[$cont] = $sql;
@@ -239,7 +241,7 @@ class bd_manip{
 	}
 	
 	function removeSuspectsFromString($string){
-		return strtr($str, array(
+		return strtr($string, array(
         	"\0" => "",
         	"'"  => "&#39;",
         	"\"" => "&#34;",

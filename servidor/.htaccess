@@ -1,39 +1,21 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  ### Teleconsultoria - Cliente ###
+  #USER
+  RewriteRule ^user/login/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=u&r_code=u_login&email=$1&pass=$2 [NC,L]
+  RewriteRule ^user/register/?$ /les/routes/route_gestor.php?r_type=u&r_code=u_register [NC,L]
+  RewriteRule ^user/new/image/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=u&r_code=u_image&id_user=$1&hash=$2 [NC,L]
 
-  #REST
-  RewriteRule ^rest/tc/login/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/?$ /rest_login.php?t=1&email=$1&pass=$2 [NC,L]
-  RewriteRule ^rest/tc/pacient/new/?$ /rest/insert_pacients.php [NC,L]
-  RewriteRule ^rest/tc/consult/new/?$ /rest/anamnese.php?intention=new [NC,L]
-  RewriteRule ^rest/tc/consult/response/?$ /rest/anamnese.php?intention=response [NC,L]
+  #TRIP
+  RewriteRule ^trip/all/?$ /les/routes/route_gestor.php?r_type=t&r_code=t_all [NC,L]
+  RewriteRule ^trip/show/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=t&r_code=t_get&id_trip=$1 [NC,L]
+  RewriteRule ^user/trips/new/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=t&r_code=t_new&id_user=$1&hash=$2 [NC,L]
+  RewriteRule ^trip/images/upload/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=t&r_code=t_image&trip_id=$1&id_user=$2&hash=$3 [NC,L]
+  RewriteRule ^trip/routes/add/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=t&r_code=t_place&trip_id=$1&id_user=$2&hash=$3 [NC,L]
+  
 
-  #NAVIGATION
-  RewriteRule ^telconsult/login/([a-z0-9A-Z@._-]+)/?$ /login.php?esp=$1 [NC,L]
-  RewriteRule ^telconsult/search/pacient/?$ /main.php?section=search [NC]
-  RewriteRule ^telconsult/new/pacient/?$ /main.php?section=newPacient [NC]
-  RewriteRule ^telconsult/new/([a-z0-9A-Z@._-]+)/?$ /main.php?section=newConsult&idclient=$1 [NC]
-  RewriteRule ^telconsult/all/?$ /main.php?section=show [NC]
-  RewriteRule ^telconsult/open/?$ /main.php?section=open [NC]
-  RewriteRule ^telconsult/closed/?$ /main.php?section=closed [NC]
-  RewriteRule ^telconsult/response/view/([a-z0-9A-Z@._-]+)/?$ /main.php?section=view_response&idconsult=$1 [NC]
-  RewriteRule ^telconsult/view/([a-z0-9A-Z@._-]+)/?$ /main.php?section=view&idconsult=$1 [NC]
-  RewriteRule ^telconsult/home/([a-z0-9A-Z@._-]+)/?$ /main.php?section=main&esp=$1 [NC]
-
-  #Logoff  
-  RewriteRule ^logoff/?$ /logoff.php [NC]
-
-  #RESPONSE
-  RewriteRule ^telconsult/respond/([a-z0-9A-Z@._-]+)/?$ /main.php?section=response&idconsult=$1 [NC]
-
-
-#  RewriteRule ^profile/findAllAvailableApp/?$ /profile.php?t=0 [NC]
-#  RewriteRule ^profile/findAllRegisteredApp/?$ /profile.php?t=5 [NC]
-#  RewriteRule ^profile/findAllNotRegisteredApp/?$ /profile.php?t=6 [NC]
-
-  #Denomation - Denominacoes
-#  RewriteRule ^denomation/findAll/?$ /denomation.php?t=0
-
+  #PLACE
+  RewriteRule ^place/show/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=p&r_code=p_get&id_place=$1 [NC,L]
+  RewriteRule ^place/search/([a-z0-9A-Z@._-]+)/?$ /les/routes/route_gestor.php?r_type=p&r_code=p_search&query=$1 [NC,L]
 
 </IfModule>

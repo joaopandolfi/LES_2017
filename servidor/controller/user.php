@@ -55,7 +55,7 @@ class User extends Controller{
 				"error" => 0,
 				"data" => array(
 					"user_id" 	=> $result["id_user"],
-					"hash" 		=> generateAPIKey($result["email"], $result["iduser"]),
+					"hash" 		=> $this->generateAPIKey($result["email"], $result["iduser"]),
 					"name" 		=> $result["name"],
 					"email" 	=> $result["email"],
 					"url_picture" => $result["photo"]
@@ -82,19 +82,19 @@ class User extends Controller{
 				'{email}'=> base64_decode($req["email"]),
 				'{pass}'=>$req["pass"],
 				'{hash}' =>"");
-		$data["hash"] = generateAPIKey($data["email"]);
+		$data["hash"] = $this->generateAPIKey($data["email"]);
 
 		$bd->setFormatedSql($sql,$data);
 
 		$bd->connectDB();
 
 		$id_user = $bd->consultAllWithSql();
-		$id_user = array_pop($id_user);
+		$id_user = array_pop($id_user[0]);
 		
 		$bd->closeConnection();
 		$bd->flushSql();
 
-		return $this->_makeBaseResponse($id_user);
+		return $this->_makeBaseResponse(array("id_user" => $id_user));
 	}
 
 

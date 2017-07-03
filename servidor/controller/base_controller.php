@@ -4,7 +4,7 @@ define("SEED",10354532);
 date_default_timezone_set("America/Sao_Paulo");
 
 abstract class Controller{
-	const PATTERN_ERROR = "{'success':0,'error':1,data:{}}";
+	const PATTERN_ERROR = "{'success':0,'error':404,data:{}}";
 
 	/* Executa a função correta na rota correta
 	* @receives code  {Codigo atual da rota}

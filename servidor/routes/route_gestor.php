@@ -18,7 +18,7 @@
 
 	//Basic
 	include_once(SRC."libs/bd_manip.php");
-	
+
 	//Controller
 	include_once(SRC."controller/base_controller.php");
 	include_once(SRC."controller/user.php");
@@ -30,6 +30,9 @@
 	//Getting Route code
 	$code = $_REQUEST["r_code"];
 	$type = $_REQUEST["r_type"];
+	$post_data = array();
+	parse_str(file_get_contents('php://input'),$post_data);
+	$data = array_merge($_REQUEST,$post_data);
 
 	$controller = "null";
 	
@@ -56,6 +59,6 @@
 			break;
 	}
 
-	echo $controller->delegateRoute($code,$route_codes,$_REQUEST);
+	echo $controller->delegateRoute($code,$route_codes,$data);
 
 ?>

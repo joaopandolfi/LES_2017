@@ -23,9 +23,29 @@ class Trip extends Controller{
 				case $codes["get_trip"]:
 					return $this->getTrip($req);
 				break;
+
+				case $codes["new_trip"]:
+					return $this->newTrip($req);
+				break;
 				
+				case $codes["like_trip"]:
+					return $this->like($req);
+				break;
+				
+				case $codes["follow_trip"]:
+					return $this->follow($req);
+				break;
+				
+				case $codes["user_trip"]:
+					return $this->userTrips($req);
+				break;
+
+				case $codes["comment_trip"]:
+					return $this->comment($req);
+				break;
+
 				default:
-					//return self::PATTERN_ERROR;
+					return self::PATTERN_ERROR;
 				break;
 			}
 		}
@@ -39,7 +59,6 @@ class Trip extends Controller{
 	* @returns $res {Funcion Response}
 	*/
 	function getAllTrips($req){
-		$res = "";
 		$bd = new bd_manip();
 		
 		$bd->setTable("short_trip");
@@ -76,11 +95,14 @@ class Trip extends Controller{
 			$pictures = $bd->consultAllByType();
 			
 			//Route
+			/*
 			$bd->setTable("trip_places");
 			$bd->setOrder("id_trip");
 			$bd->setKey($_idTripKey);
 			$route = $bd->consultAllByType();
-			
+			*/
+
+			$route = explode(";", $result["r.resumed_tags"]);
 
 			//Comments
 			$bd->setTable("trip_evaluations");
@@ -120,10 +142,8 @@ class Trip extends Controller{
 	/* Usuario curte a trip
 	* 
 	*/
-	function _like($req){
-		$res = "";
-		/*..code*/
-		return $res;
+	function like($req){
+		return $this->_makeBaseResponse(array("like" => 1));
 	}
 
 	/* Usuario marca que vai na viagem
@@ -135,13 +155,11 @@ class Trip extends Controller{
 		return $res;
 	}
 
-	/* Usuario marca que quer ir mas n tem grana
+	/* Usuario segue Trip (FOLLOW)
 	*
 	*/
-	function _iDontHaveMoney($req){
-		$res = "";
-		/*..code*/
-		return $res;
+	function follow($req){
+		return $this->_makeBaseResponse(array("like" => 1));
 	}
 
 	/* Usuario avalia a trip
@@ -154,13 +172,44 @@ class Trip extends Controller{
 	}
 
 
-	/* Retorna as trips do usuário
-	*
+	/* Comenta na Trip
+	* @receives id_user {Id do usuario que está comentando}
+	* @receives id_trip {Id da trip que está recebendo comentário}
+	* @receives comment {Comentario}
+	* @returns {formated data}
 	*/
-	function _userTrips($req){
-		$res = "";
-		/*..code*/
-		return $res;
+	function comment($req){
+		$bd = new bd_manip();
+
+		$bd->setTable("route_evaluation");
+		$data = array('comments' => $req["comments"],
+				'fk_user' 	=> $req["id_user"],
+				'fk_route' 	=> $req["id_trip"]);
+
+		$data->setSafeData($data);
+
+		return $this->_makeLambdaConsult($bd,function($bd){
+			return $bd->forceInsert();
+		});
+	}	
+
+	/* Retorna as trips do usuário
+	* @receives id_user {Id do usuario}
+	* @returns {formated_data}
+	*/
+	function userTrips($req){
+		$bd = new bd_manip();
+		
+		$bd->setTable("short_trip");
+		$bd->setOrder("id_trip");
+
+		$query = " id_user = '{query}' ";
+		$data = array('{query}' => $req["id_user"] );
+		$bd->setFormatedKey($query,$data);
+
+		return $this->_makeLambdaConsult($bd,function($bd){
+			return $bd->consultAllByType();
+		});
 	}
 
 	/* Cria uma trip
@@ -172,6 +221,10 @@ class Trip extends Controller{
 	*/
 	function newTrip($req){
 		$bd = new bd_manip();
+
+		if(count($req)<7){
+			return "{'success':0,'error':'Invalid POST parameters',data:{}}";
+		}
 
 		$sql = "SELECT new_trip('{id_user}','{title}','{short_route}','{description}');";
 
@@ -188,6 +241,12 @@ class Trip extends Controller{
 		$id_trip = array_pop($id_trip[0]);
 		$bd->flushSql();
 
+		$bd->setTable("route");
+		$bd->setKey("id_route = '".$id_trip."'");
+		$bd->setSafeData(array('resumed_tags'=>$req["tags"]));
+		$bd->update();
+
+/*
 		$tags = explode(";", $req["tags"]);
 		$len_tags = count($tags)-1;
 
@@ -199,7 +258,7 @@ class Trip extends Controller{
 			$bd->flushSql();
 			$len_tags -= 1;
 		}
-
+*/
 		$bd->closeConnection();
 	
 		return $this->_makeBaseResponse(array('id_trip' => $id_trip));

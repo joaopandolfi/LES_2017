@@ -129,14 +129,14 @@ Não terá rota :D
 ## ===== INTERACTIONS WITH TRIP
 
 ```
-/* Like Trip */
+/* Like Trip */ => OK
 [ip]/trip/like/{id_trip}/{id_user}/{hash}/{like_or_unlike}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
 {hash} => String 
 {like_or_unlike} => 1 or 0
 
-/* I will to this fucking crazy Trip, Follow button */
+/* I will to this fucking crazy Trip, Follow button */ => OK
 [ip]/trip/follow/{id_trip}/{id_user}/{hash}/{follow}/
 {id_trip} => Int por enquanto
 {id_user} => Int por enquanto
@@ -205,7 +205,7 @@ $data = {
 }
 
 
-/*My trips*/ ==> IGUAL O FEED // WHERE DIFERENTE
+/*My trips*/ ==> IGUAL O FEED // WHERE DIFERENTE => OK
 [ip]/user/trips/my/{user_id}/
 {user_id} => Int por enquanto
 @returns

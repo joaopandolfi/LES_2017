@@ -10,6 +10,10 @@
 			'new_trip'		=> "t_new",
 			'image_trip'	=> "t_image",
 			'place_trip'	=> "t_place",
+			'like_trip'		=> "t_like",
+			'follow_trip'	=> "t_follow",
+			'user_trip'		=> "t_user",
+			'comment_trip'	=> "f_comment",
 			'get_place'		=> "p_get",
 			'search_place'	=> "p_search"
 			);

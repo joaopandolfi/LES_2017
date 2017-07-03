@@ -55,6 +55,7 @@ class bd_manip{
 		$cont = 0;
 		$result = array();
 		$sql = "SELECT ".(empty($this->colunas)?"*":$this->colunas) ." FROM ".$this->tabela." order by ".$this->ordem;
+		//echo $sql."<BR>";
 		$query = mysqli_query($this->con,$sql);
 		while($sql = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 			$result[$cont] = $sql;
@@ -69,7 +70,7 @@ class bd_manip{
 		$result = array();
 		$sql = "SELECT ".(empty($this->colunas)?"*":$this->colunas) ." FROM ".$this->tabela." WHERE ".$this->chave." order by ".$this->ordem;
 		$query = mysqli_query($this->con,$sql);
-		echo $sql."<BR>";
+		//echo $sql."<BR>";
 		while($sql = mysqli_fetch_array($query, MYSQLI_ASSOC)){
 			$result[$cont] = $sql;
 			$cont++;
@@ -80,6 +81,7 @@ class bd_manip{
 	function consult(){
 		$result = array();
 		$sql = "SELECT ".(empty($this->colunas)?"*":$this->colunas) ." FROM ".$this->tabela." where ".$this->chave;
+		//echo $sql."<BR>";
 		$query = mysqli_query($this->con,$sql);
 		while($sql = mysqli_fetch_array($query,MYSQLI_ASSOC))
 			$result = $sql;
@@ -90,7 +92,7 @@ class bd_manip{
 		$cont = 0;
 		$result = array();
 		$sql = $this->sql;
-		echo $sql."<BR>";
+		//echo $sql."<BR>";
 		$query = mysqli_query($this->con,$sql);
 		while($sql = mysqli_fetch_array($query,MYSQLI_ASSOC)){
 			$result[$cont] = $sql;
@@ -115,6 +117,7 @@ class bd_manip{
 		for($i=1;$i<$this->t_dados;$i++)
 			$campos = $campos.",".$this->campos[$i]."='".$this->dados[$i]."'";
 		$sql = $sql.$campos." WHERE ".$this->chave;
+		//echo $sql."<BR>";
 		mysqli_query($this->con,$sql);
 		return $sql;
 	}
@@ -140,6 +143,7 @@ class bd_manip{
 	}
 
 	function insert(){
+		//echo $sql."<BR>";
 		$query  = mysqli_query($this->con,$this->makeSqlInsert());
 	}
 

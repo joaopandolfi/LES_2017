@@ -187,9 +187,9 @@ class Trip extends Controller{
 		$bd->setTable("route_evaluation");
 		$data = array('comments' => $req["comments"],
 				'fk_user' 	=> $req["id_user"],
-				'fk_route' 	=> $req["id_trip"]);
+				'fk_route' 	=> $req["trip_id"]);
 
-		$data->setSafeData($data);
+		$bd->setSafeData($data);
 
 		return $this->_makeLambdaConsult($bd,function($bd){
 			return $bd->forceInsert();

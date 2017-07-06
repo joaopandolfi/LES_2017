@@ -162,7 +162,7 @@ class bd_manip{
 		$this->campos = array();
 		$this->dados = array_values($p_dados);	
 		$this->campos = array_keys($p_dados);
-		$this->t_dados = count($p_dados)-1;
+		$this->t_dados = count($p_dados);
 	}
 
 	function setSafeData($p_dado){

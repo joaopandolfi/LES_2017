@@ -24,4 +24,7 @@
 
   #IMAGE
   RewriteRule ^img/upload/?$ /les/libs/img_upload.php [NC,L]
+
+  #TESTES
+  RewriteRule ^tests/?$ /tests.php [NC,L]  
 </IfModule>

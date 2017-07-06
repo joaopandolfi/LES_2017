@@ -1,26 +1,42 @@
 <?php
 class Tester{
-var $passeds = 0;
-var $faileds = 0;
+	var $passeds = 0;
+	var $faileds = 0;
 
-function test($name, $lambda, $expected){
+	function test($name, $lambda, $expected){
 
-	$result = $lambda();
-	if($result == $expected){
-		$this->passeds += 1;
-		echo "PASSED TEST: ".$name."<BR>";
+		$result = $lambda();
+		if($result == $expected){
+			$this->passeds += 1;
+			echo "PASSED TEST: ".$name."<BR>";
+		}
+		else {
+			echo "FAILED TEST: ".$name." --- [EXPECTED: $expected] -- [RETURNED: $result] <BR>";	
+			$this->faileds++;
+		}
 	}
-	else {
-		echo "FAILED TEST: ".$name." --- [EXPECTED: $expected] -- [RETURNED: $result] <BR>";	
-		$this->faileds++;
+
+	function printResult(){
+		echo "<BR>PASSEDS: ".$this->passeds."<br>";
+		echo "FAILEDS: ".$this->faileds."<BR>";
 	}
+
 }
 
-function printResult(){
-	echo "<BR>PASSEDS: ".$this->passeds."<br>";
-	echo "FAILEDS: ".$this->faileds."<BR>";
-}
+function postData($url, $arrayData){
+	$postdata = http_build_query($arrayData);
 
+	$opts = array('http' =>
+    	array(
+        	'method'  => 'POST',
+        	'header'  => 'Content-type: application/x-www-form-urlencoded',
+        	'content' => $postdata
+    	)
+	);
+
+	$context  = stream_context_create($opts);
+
+	return file_get_contents($url, false, $context);
 }
 
 $t = new Tester();
@@ -104,6 +120,39 @@ $t->test("[Usuario digita login e senha] -- [usuario busca suas viagens]",functi
 
 }, "1");
 
+$t->test("[Usuario faz comentario] -- [Busca comentario]",function(){
+	$user = base64_encode("leo");
+	$pass = "MTIz";
+
+	$r = postData("http://restfull.hol.es/les/user/login/".$user."/".$pass,array("a"=>"1"));
+	$json = json_decode($r,true);
+
+	$id =  $json["data"]["user_id"];
+
+	$r = file_get_contents("http://restfull.hol.es/les/user/trips/my/".$id);
+	$json = json_decode($r,true);
+
+	return $json["data"][1]["id_trip"];
+
+}, "1");
+
+$t->test("[Usuario digita login e senha] -- [usuario busca suas viagens]",function(){
+	$user_id = 1;
+	$user_hash = "LWpvcmRhbiAtfHwtMTAzNTQ1MzIt";
+	$trip_id= 1;
+
+	$r = postData("http://restfull.hol.es/les/trip/comment/".$trip_id."/".$user_id."/".$user_hash,array("comments"=> "Comentario bosta"));
+	$json = json_decode($r,true);
+	
+
+	$r = file_get_contents("http://restfull.hol.es/les/trip/show/".$trip_id);
+	$json = json_decode($r,true);
+
+	$last_comment = array_pop($json["data"]["comments"]);
+
+	return $last_comment["comments"];
+
+}, "Comentario bosta");
 
 
 echo "==========================================<br>";

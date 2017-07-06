@@ -121,22 +121,6 @@ $t->test("[Usuario digita login e senha] -- [usuario busca suas viagens]",functi
 }, "1");
 
 $t->test("[Usuario faz comentario] -- [Busca comentario]",function(){
-	$user = base64_encode("leo");
-	$pass = "MTIz";
-
-	$r = postData("http://restfull.hol.es/les/user/login/".$user."/".$pass,array("a"=>"1"));
-	$json = json_decode($r,true);
-
-	$id =  $json["data"]["user_id"];
-
-	$r = file_get_contents("http://restfull.hol.es/les/user/trips/my/".$id);
-	$json = json_decode($r,true);
-
-	return $json["data"][1]["id_trip"];
-
-}, "1");
-
-$t->test("[Usuario digita login e senha] -- [usuario busca suas viagens]",function(){
 	$user_id = 1;
 	$user_hash = "LWpvcmRhbiAtfHwtMTAzNTQ1MzIt";
 	$trip_id= 1;

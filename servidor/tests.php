@@ -138,6 +138,51 @@ $t->test("[Usuario faz comentario] -- [Busca comentario]",function(){
 
 }, "Comentario bosta");
 
+$t->test("[Usuario Cria Trip] -- [Busca Trip]",function(){
+	$user_id = 1;
+	$user_hash = "LWpvcmRhbiAtfHwtMTAzNTQ1MzIt";
+	$trip_id= 0;
+
+	$r = postData("http://restfull.hol.es/les/user/trips/new/".$user_id."/".$user_hash,
+		array("title"=> "TRIP TESTE",
+			"short_route" => "short route - teste",
+			"description" => "Essa trip é só teste",
+			"tags" => "ppk;triplouca;comprebaton"));
+	$json = json_decode($r,true);
+	
+	$trip_id = $json["data"]["id_trip"];
+	$r = file_get_contents("http://restfull.hol.es/les/trip/show/".$trip_id);
+	$json = json_decode($r,true);
+
+	return $json["data"]["title"];
+
+}, "TRIP TESTE");
+
+/*$t->test("[Busca ultima trip] -- [Usuario adiciona foto a essa ultima trip] -- [Verifica foto]",function(){
+	$user_id = 1;
+	$user_hash = "LWpvcmRhbiAtfHwtMTAzNTQ1MzIt";
+	$trip_id= 0;
+
+	$r = file_get_contents("http://restfull.hol.es/les/user/trips/my/".$user_id);
+	$json = json_decode($r,true);
+
+	$last_trip = array_pop($json["data"]);
+	$trip_id = $last_trip["id_trip"];
+
+	$r = postData("http://restfull.hol.es/les/trip/images/upload/".$trip_id."/".$user_id."/".$user_hash,
+		array("photo"=> "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOmD_2aZMwN8LsNJ7O1HGix4Er4ise0fp6nSqRwSx9pNJAEauB",
+			"label" => "IMAGEM TESTE"));
+	
+	$r = file_get_contents("http://restfull.hol.es/les/trip/show/".$trip_id);
+	$json = json_decode($r,true);
+
+	$last_pic = array_pop($json["data"]["pictures"]);
+
+	return $last_pic["label"];
+
+}, "IMAGEM TESTE");
+
+*/
 
 echo "==========================================<br>";
 $t->printResult();

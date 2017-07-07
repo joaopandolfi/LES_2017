@@ -291,7 +291,7 @@ class Trip extends Controller{
 
 		$bd->connectDB();
 		//while ($len_images >= 0) {
-			$data = array('fk_route',$req["id_trip"],
+			$data = array('fk_route',$req["trip_id"],
 					'photo' => $photos,
 					'label' => $labels);
 					//'photo' => $photos[$len_images],
